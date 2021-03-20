@@ -11,6 +11,6 @@ class Comment extends Model
             'comment_id',
             'user_id',
             'travel_id',
-            'title',
+            'comment',
     ];
 }
