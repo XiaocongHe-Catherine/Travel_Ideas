@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Ideas extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,13 @@ class Ideas extends Migration
      */
     public function up()
     {
-        Schema::create('ideas', function (Blueprint $table) {
-            $table->bigIncrements('travel_id');
-            $table->bigInteger('user_id');
-            $table->string('title');
-            $table->string('destination');
-            $table->date('start_date');
-            $table->date('end_date');
+        Schema::create('tags', function (Blueprint $table) {
+            $table->bigIncrements('tag_id');
+            $table->bigInteger('travel_id');
+            $table->string('tag_name');
             $table->timestamps();
         });
     }
-    /**
 
     /**
      * Reverse the migrations.
@@ -32,6 +28,6 @@ class Ideas extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tags');
     }
 }
