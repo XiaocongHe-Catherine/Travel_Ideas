@@ -13,8 +13,18 @@ class Ideas extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('ideas', function (Blueprint $table) {
+            $table->bigIncrements('travel_id');
+            $table->string('title');
+            $table->string('destination');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->date('end_date');
+            $table->rememberToken();
+            $table->timestamps();
+        });
     }
+    /**
 
     /**
      * Reverse the migrations.
