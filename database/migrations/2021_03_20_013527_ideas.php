@@ -15,12 +15,11 @@ class Ideas extends Migration
     {
         Schema::create('ideas', function (Blueprint $table) {
             $table->bigIncrements('travel_id');
+            $table->bigInteger('user_id');
             $table->string('title');
             $table->string('destination');
             $table->date('start_date');
             $table->date('end_date');
-            $table->date('end_date');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
