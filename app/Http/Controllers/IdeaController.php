@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Idea;
 
 class IdeaController extends Controller
 {
@@ -13,7 +14,8 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        //
+        $ideas = Idea::all();
+		return view("ideas.view_all_ideas",compact('ideas'));
     }
 
     /**
@@ -45,7 +47,9 @@ class IdeaController extends Controller
      */
     public function show($id)
     {
-        //
+             //fecth a book by id
+		$idea = Idea::find($id);
+		return view("ideas.view_idea",compact('idea'));
     }
 
     /**

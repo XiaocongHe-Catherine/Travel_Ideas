@@ -19,4 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('idea', 'IdeaController');
+Route::resource('ideas', 'IdeaController');
+
