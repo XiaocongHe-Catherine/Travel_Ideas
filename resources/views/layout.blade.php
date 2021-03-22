@@ -19,7 +19,7 @@
                 <ul>
                     <li><a href="/ideas">All Ideas</a></li>
                     <li><a href="/ideas/create">Create Idea</a></li>       
-                    <li><a href="/login">Login</a></li>                 
+                    <li><a href="/login">Login/logout</a></li>              
                 </ul>
             </nav>             
 </header> 

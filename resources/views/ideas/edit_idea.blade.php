@@ -49,27 +49,16 @@ $(document).ready(function(){
                 </tr>
                 </tr>
                     <td><label for="start_date" >Start Date</label></td>
-                    <td><input id="datepicker" name="start_date" type="text" class="form-control"/></td>
+                    <td><input id="datepicker" name="start_date" type="text" value="{{ $idea->start_date }}" class="form-control"/></td>
                 </tr>
                 </tr>
                     <td><label for="end_date" >End Date</label></td>
-                    <td><input id="datepicker_e" name="end_date" type="text" class="form-control"/></td>
+                    <td><input id="datepicker_e" name="end_date" type="text"  value="{{ $idea->end_date }}" class="form-control"/></td>
                 </tr>
                 <tr>
                     <td><label for="tags" >tags</label></td>
-                    <td> @php
-                             $first=true
-                         @endphp
-
-                        @foreach($idea->tags as $tag)
-                         @if($first==true)
-                            {{ $tag->tag_name}}
-                            {{ $first=false }}
-                         @else
-                            , {{ $tag->tag_name}}
-                         @endif
-
-                     @endforeach</td>
+                    <td><input id ="tags" name="tags" type="text" 
+                    value="@php $first=true @endphp @foreach($idea->tags as $tag) @if($first==true){{ $tag->tag_name}}{{ $first=false }}@else, {{ $tag->tag_name}}@endif @endforeach" class="form-control"/></td>
                     <td>&nbsp</td>
                     <td><label for="user" >Author</label></td>
                     <td> {{ $idea->user->name}}  </td>

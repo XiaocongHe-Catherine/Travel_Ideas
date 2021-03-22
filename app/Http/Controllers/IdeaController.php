@@ -55,8 +55,14 @@ class IdeaController extends Controller
           'start_date'=> $request->get('start_date'),
           'end_date'=> $request->get('end_date'),     
           ]);
-        
+        $tags_name=$request->get('tags');
+        $comma=',';
+         //4. save the Idea into database
         $idea->save();
+        foreach(explode(',',$tags_name) as $tag_name){
+            $tag = new Tag(['tag_name'=>$tag_name]);
+            $idea->tags()->save($tag);
+        }
         return redirect('/ideas')->with('success', 'Idea has been added');
     }
 
@@ -110,8 +116,15 @@ class IdeaController extends Controller
             $idea->destination =$request->get('destination');
             $idea->start_date = $request->get('start_date');
             $idea->end_date = $request->get('end_date'); 
-             //4. save the book into database
+            $tags_name=$request->get('tags');
+            $comma=',';
+             //4. save the Idea into database
             $idea->save();
+            $idea->tags()->delete();
+            foreach(explode(',',$tags_name) as $tag_name){
+                $tag = new Tag(['tag_name'=>$tag_name]);
+                $idea->tags()->save($tag);
+            }
             return redirect('/ideas')->with('success', 'Idea has been updated');
         }
 
