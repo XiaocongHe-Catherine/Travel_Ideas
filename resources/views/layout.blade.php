@@ -17,10 +17,9 @@
                             
             <nav class="clear"> <!-- The nav link semantically marks your main site navigation -->
                 <ul>
-                    <li><a href="/">All Ideas</a></li>
-                    <li><a href="/">Create Idea</a></li>       
+                    <li><a href="/ideas">All Ideas</a></li>
+                    <li><a href="/ideas/create">Create Idea</a></li>       
                     <li><a href="/login">Login</a></li>                 
-                    <li><a href="/login">Loginout</a></li>
                 </ul>
             </nav>             
 </header> 

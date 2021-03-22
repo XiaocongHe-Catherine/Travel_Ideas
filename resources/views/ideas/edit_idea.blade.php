@@ -34,17 +34,18 @@ $(document).ready(function(){
     @endif
 </div>
 </div>
-    <form method="post" action="{{ route('ideas.store') }}">
-    @csrf
+    <form method="post" action="{{ route('ideas.update',$idea->id) }}">
+        @method('PATCH')
+        @csrf
             <table class="table table-striped">
             <tbody>
                 <tr>
                     <td><label for="title" >Idea Name</label></td>
-                    <td><input name="title" type="text" class="form-control"/></td>
+                    <td><input name="title" type="text" value="{{ $idea->title }}" class="form-control" /></td>
                 </tr>
                 <tr>
                     <td><label for="destination" >Destination</label></td>
-                    <td><input name="destination" type="text" class="form-control"/></td>
+                    <td><input name="destination" type="text" value="{{ $idea->destination }}" class="form-control" /></td>
                 </tr>
                 </tr>
                     <td><label for="start_date" >Start Date</label></td>
@@ -56,10 +57,25 @@ $(document).ready(function(){
                 </tr>
                 <tr>
                     <td><label for="tags" >tags</label></td>
-                    <td><input name="tags" type="text" class="form-control"/></td>
+                    <td> @php
+                             $first=true
+                         @endphp
+
+                        @foreach($idea->tags as $tag)
+                         @if($first==true)
+                            {{ $tag->tag_name}}
+                            {{ $first=false }}
+                         @else
+                            , {{ $tag->tag_name}}
+                         @endif
+
+                     @endforeach</td>
+                    <td>&nbsp</td>
+                    <td><label for="user" >Author</label></td>
+                    <td> {{ $idea->user->name}}  </td>
                 </tr>
                  <tr>
-                    <td></td><td><button type="submit">Add</button></td>
+                    <td></td><td><button type="submit">Update</button></td>
                 </tr>
              </tbody>
             </table>
