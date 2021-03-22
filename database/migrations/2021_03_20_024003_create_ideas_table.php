@@ -14,7 +14,7 @@ class CreateIdeasTable extends Migration
     public function up()
     {
         Schema::create('ideas', function (Blueprint $table) {
-            $table->bigIncrements('travel_id');
+            $table->bigIncrements('id');
             $table->bigInteger('user_id');
             $table->string('title');
             $table->string('destination');

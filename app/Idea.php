@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Idea extends Model
 {
-  
+    public function tags(){
+        return $this->hasMany('App\Tag');
+    }
 
       /**
      * The attributes that are mass assignable.
@@ -14,7 +16,7 @@ class Idea extends Model
      * @var array
      */
     protected $fillable = [
-        'travel_id', 
+        'id', 
         'user_id', 
         'title',
         'destination',
