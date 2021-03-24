@@ -13,15 +13,27 @@
 <header>           
             <hgroup>
                 <h1>Travel Ideas</h1>                 
-            </hgroup>
-                            
+            </hgroup>                   
             <nav class="clear"> <!-- The nav link semantically marks your main site navigation -->
                 <ul>
                     <li><a href="/ideas">All Ideas</a></li>
                     <li><a href="/ideas/create">Create Idea</a></li>       
                     <li><a href="/login">Login/logout</a></li>              
                 </ul>
-            </nav>             
+            </nav>    
+            <div class="form-group">
+            <form method="get" action="{{ route('search') }}">
+            @csrf
+              <select name="des_or_tags">
+                  <option value="destination">destination</option>
+                  <option value="tag">tag</option>
+              </select>
+            <td><input ass="form-controller" id="search" name="search"></td>
+            <input type="checkbox" name="partial_match" type="text">
+            <label for="partial_match"> Partial_match</label>
+            <button type="submit" >Find ideas!</button>
+            </form>
+            </div>         
 </header> 
 
 <section id="articles" class="container">
@@ -35,5 +47,11 @@
    <a href="#" class="up">Go UP</a>
 </footer>
 </section>
+<script type="text/javascript" src="/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#des_or_tags").val();
+})
+</script>
 </body>
 </html>

@@ -21,4 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('ideas', 'IdeaController');
 
-
+Route::get('/search','SearchController@search')->name('search');
