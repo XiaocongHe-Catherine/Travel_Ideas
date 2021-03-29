@@ -17,7 +17,17 @@ class IdeaController extends Controller
     public function index()
     {
         $ideas = Idea::all();
-		return view("ideas.view_all_ideas",compact('ideas'));
+        $count = count($ideas);
+		return view("ideas.view_all_ideas",compact('ideas','count'));
+    }
+      /**
+     * Check if the idea belong to the user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function isTheOwner($user)
+    {
+      return $this->user_id === $user->id;
     }
 
     /**

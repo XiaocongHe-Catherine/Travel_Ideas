@@ -11,10 +11,12 @@
   @if(session()->get('success'))
     <div class="alert alert-success">
       {{ session()->get('success') }}  
-    </div><br />
-  @endif
+</div><br />
+@endif
+</div>
 <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
-
+<article class="travel_ideas">
+{{ $count }} records
   <table class="table table-striped">
     <tbody id="TravelIdeas">  
         @foreach($ideas as $idea)
@@ -54,16 +56,19 @@
         </tr>
         <tr>
              <td>&nbsp</td>
-             <td><a href="{{ route('ideas.show',$idea->id)}}"><button  type="button">Display</button></a></td>
-             <td><a href="{{ route('ideas.edit',$idea->id)}}"><button type="button">Edit</button></a></td>
-             <form action="{{ route('ideas.destroy',$idea->id)}}", method ="post">
+             <td>&nbsp</td>
+             <td><a href="{{ route('ideas.show',$idea->id)}}"><button class="button" type="button">Display</button></a></td>
+             @if($idea->user_id == Auth::user()->id)
+               <td><a href="{{ route('ideas.edit',$idea->id)}}"><button class="button" type="button">Edit</button></a></td>
+               <form action="{{ route('ideas.destroy',$idea->id)}}", method ="post">
              @csrf
              @method('Delete')
-                <td><button type="submit">Delete</button></td>
+                <td><button class="button" type="submit">Delete</button></td>
              </form>
+             @endif
          </tr>
         @endforeach
     </tbody>
   </table>
-</div>
+</article>
 @endsection

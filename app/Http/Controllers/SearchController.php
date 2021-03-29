@@ -38,8 +38,8 @@ class SearchController extends Controller
         if($search==null){
           $ideas = Idea::all();
         }
-    
-	    	return view("ideas.view_all_ideas",compact('ideas')); 
+        $count = count($ideas);
+	    	return view("ideas.view_all_ideas",compact('ideas','count'));
     }
 
 }

@@ -34,6 +34,8 @@ $(document).ready(function(){
     @endif
 </div>
 </div>
+<article>
+     <h3>Please use the form below to add your idea </h3>
     <form method="post" action="{{ route('ideas.store') }}">
     @csrf
             <table class="table table-striped">
@@ -64,4 +66,5 @@ $(document).ready(function(){
              </tbody>
             </table>
     </form>
+</article>
 @endsection

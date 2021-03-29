@@ -6,20 +6,24 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>My Travel Plan Idea</title>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet" >
+  <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
   <section id="page">
 <header>           
             <hgroup>
-                <h1>Travel Ideas</h1>                 
-            </hgroup>                   
-            <nav class="clear"> <!-- The nav link semantically marks your main site navigation -->
+                 Welcome  <a href="/">{{ Auth::user()->name }} </a>  
+                <h1>Travel Ideas</h1>                   
+            </hgroup>   
+                         
+            <nav class="clear"> <!-- The nav link semantically marks your main site navigation -->      
                 <ul>
                     <li><a href="/ideas">All Ideas</a></li>
                     <li><a href="/ideas/create">Create Idea</a></li>       
-                    <li><a href="/login">Login/logout</a></li>              
+                    <li><a href="/login">Login/logout</a></li>                   
                 </ul>
-            </nav>    
+            </nav>  
+           
             <div class="form-group">
             <form method="get" action="{{ route('search') }}">
             @csrf

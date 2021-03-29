@@ -34,6 +34,7 @@ $(document).ready(function(){
     @endif
 </div>
 </div>
+<article>
     <form method="post" action="{{ route('ideas.update',$idea->id) }}">
         @method('PATCH')
         @csrf
@@ -69,4 +70,29 @@ $(document).ready(function(){
              </tbody>
             </table>
     </form>
+</article>
+<article class="hotel_info">
+<h2>Hotel recommentation</h2>
+<div id="hotel_api"><ol id="hotel_info"></ol></div>
+</article>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+$.ajax({
+    url:"http://api.hotwire.com/v1/deal/hotel?dest={{ $idea->destination }}&&apikey=8gvzbxja3eunnhm9ff28ffvw&callback=?",
+    dataType: 'xml',
+    success:function(data){
+        var arr = [];
+    $(data).find("Headline").each(function(i) { 
+        var text = $(this).text();
+        if (arr.indexOf(text) === -1) {
+        arr.push(text);
+        if(arr.length<8){
+          $('<li><a href= "' + text + '">' + text + '</a ></li>').appendTo('#hotel_api'); 
+        }
+    }
+    })
+    }
+});
+</script>
 @endsection
