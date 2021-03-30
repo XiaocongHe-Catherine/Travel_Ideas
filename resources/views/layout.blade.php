@@ -33,7 +33,7 @@
               </select>
             <td><input ass="form-controller" id="search" name="search"></td>
             <input type="checkbox" name="partial_match" type="text">
-            <label for="partial_match"> Partial_match</label>
+            <label for="partial_match"> Partial Match</label>
             <button type="submit" >Find ideas!</button>
             </form>
             </div>         

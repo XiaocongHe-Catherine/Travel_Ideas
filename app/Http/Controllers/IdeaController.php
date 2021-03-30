@@ -20,15 +20,6 @@ class IdeaController extends Controller
         $count = count($ideas);
 		return view("ideas.view_all_ideas",compact('ideas','count'));
     }
-      /**
-     * Check if the idea belong to the user
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function isTheOwner($user)
-    {
-      return $this->user_id === $user->id;
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -73,7 +64,7 @@ class IdeaController extends Controller
             $tag = new Tag(['tag_name'=>$tag_name]);
             $idea->tags()->save($tag);
         }
-        return redirect('/ideas')->with('success', 'Idea has been added');
+        return redirect()->route('ideas.show',$idea->id)->with('success', 'Idea has been created Successfully');
     }
 
     /**
@@ -135,7 +126,7 @@ class IdeaController extends Controller
                 $tag = new Tag(['tag_name'=>$tag_name]);
                 $idea->tags()->save($tag);
             }
-            return redirect('/ideas')->with('success', 'Idea has been updated');
+        return redirect()->route('ideas.show',$idea->id)->with('success', 'Idea has been updated Successfully');
         }
 
     /**

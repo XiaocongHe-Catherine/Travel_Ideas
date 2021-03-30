@@ -33,7 +33,7 @@ $(document).ready(function(){
       </div><br />
     @endif
 </div>
-</div>
+
 <article>
     <form method="post" action="{{ route('ideas.update',$idea->id) }}">
         @method('PATCH')
@@ -75,8 +75,6 @@ $(document).ready(function(){
 <h2>Hotel recommentation</h2>
 <div id="hotel_api"><ol id="hotel_info"></ol></div>
 </article>
-
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 $.ajax({
     url:"http://api.hotwire.com/v1/deal/hotel?dest={{ $idea->destination }}&&apikey=8gvzbxja3eunnhm9ff28ffvw&callback=?",

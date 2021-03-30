@@ -1,7 +1,18 @@
-
 @extends('layout')
 
 @section('content')
+<style>
+  .uper {
+    margin-top: 40px;
+  }
+</style>
+<div class="uper">
+  @if(session()->get('success'))
+    <div class="alert alert-success">
+      {{ session()->get('success') }}  
+</div><br />
+@endif
+</div>
 
 <article class="idea_info">
 <table class="table table-striped">
