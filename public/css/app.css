@@ -313,7 +313,7 @@ input[type=checkbox] {
   padding: 0;
 }
 
-.button {
+.mybutton {
   background-color:cornsilk;
   border: none;
   color:blue;
@@ -8286,6 +8286,9 @@ button.bg-dark:focus {
           user-select: all !important;
 }
 
+.uper {
+  margin-top: 40px;
+}
 .user-select-auto {
   -webkit-user-select: auto !important;
      -moz-user-select: auto !important;

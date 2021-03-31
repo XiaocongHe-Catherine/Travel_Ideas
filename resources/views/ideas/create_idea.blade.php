@@ -1,11 +1,7 @@
 @extends('layout')
 
 @section('content')
-<style>
-  .uper {
-    margin-top: 40px;
-  }
-</style>
+
 <link href="{{ asset('/css/datePicker.css') }}" rel="stylesheet"/>
 <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
 <script src="/js/jquery-3.5.1.min.js" type="text/javascript" ></script>
@@ -13,10 +9,10 @@
 <script src="/js/jquery-ui-1.10.0.custom.min.js" type="text/javascript" ></script>
 <script type="text/javascript">
 $(document).ready(function(){
-   $("#datepicker").datepicker({
+   $("#start_date").datepicker({
          dateFormat:'yy-mm-dd'
    });
-   $("#datepicker_e").datepicker({
+   $("#start_date").datepicker({
          dateFormat:'yy-mm-dd'
    });
    
@@ -41,23 +37,23 @@ $(document).ready(function(){
             <tbody>
                 <tr>
                     <td><label for="title" >Idea Name</label></td>
-                    <td><input name="title" type="text" class="form-control"/></td>
+                    <td><input name="title"  id="title" type="text" class="form-control"/></td>
                 </tr>
                 <tr>
                     <td><label for="destination" >Destination</label></td>
-                    <td><input name="destination" type="text" class="form-control"/></td>
+                    <td><input name="destination" id="destination" type="text" class="form-control"/></td>
                 </tr>
-                </tr>
+                <tr>
                     <td><label for="start_date" >Start Date</label></td>
-                    <td><input id="datepicker" name="start_date" type="text" class="form-control"/></td>
+                    <td><input id="start_date" name="start_date" type="text" class="form-control"/></td>
                 </tr>
-                </tr>
+                <tr>
                     <td><label for="end_date" >End Date</label></td>
-                    <td><input id="datepicker_e" name="end_date" type="text" class="form-control"/></td>
+                    <td><input id="end_date" name="end_date" type="text" class="form-control"/></td>
                 </tr>
                 <tr>
                     <td><label for="tags" >tags</label></td>
-                    <td><input name="tags" type="text" class="form-control"/></td>
+                    <td><input name="tags" id="tags" type="text" class="form-control"/></td>
                 </tr>
                  <tr>
                     <td></td><td><button type="submit">Add</button></td>

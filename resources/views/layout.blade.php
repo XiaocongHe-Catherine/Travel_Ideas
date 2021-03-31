@@ -9,13 +9,11 @@
   <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <section id="page">
-<header>           
-            <hgroup>
-                 Welcome  <a href="/">{{ Auth::user()->name }} </a>  
+<section id="page">
+<header>              
+                Welcome  <a href="/">{{ Auth::user()->name }} </a>  
                 <h1>Travel Ideas</h1>                   
-            </hgroup>   
-                         
+                  
             <nav class="clear"> <!-- The nav link semantically marks your main site navigation -->      
                 <ul>
                     <li><a href="/ideas">All Ideas</a></li>
@@ -31,9 +29,9 @@
                   <option value="destination">destination</option>
                   <option value="tag">tag</option>
               </select>
-            <td><input ass="form-controller" id="search" name="search"></td>
-            <input type="checkbox" name="partial_match" type="text">
-            <label for="partial_match"> Partial Match</label>
+             <input id="search" name="search">
+             <input type="checkbox" name="partial_match" > 
+             <label> Partial Match</label>
             <button type="submit" >Find ideas!</button>
             </form>
             </div>         

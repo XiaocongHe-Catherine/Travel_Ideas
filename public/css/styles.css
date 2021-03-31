@@ -212,6 +212,15 @@ form {
     padding: 10px; margin-bottom: 30px;
 }
 
+#delete_form{
+	border:0;
+    box-shadow: none;
+	border-radius: 0;
+	padding:0;
+	margin-bottom:0;
+	background-color:transparent;
+}
+
 label {
     font-weight: bold; font-size: 13px;
 }

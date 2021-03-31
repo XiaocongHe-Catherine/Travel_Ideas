@@ -136,9 +136,9 @@ class IdeaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    { 
         $idea = Idea::find($id);
         $idea->delete();
-        return redirect('/ideas')->with('success', 'Idea has been deleted Successfully');
+       return redirect()->route('ideas.index')->with('success', 'Idea has been deleted Successfully');
     }
 }

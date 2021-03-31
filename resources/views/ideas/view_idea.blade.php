@@ -1,11 +1,7 @@
 @extends('layout')
 
 @section('content')
-<style>
-  .uper {
-    margin-top: 40px;
-  }
-</style>
+
 <div class="uper">
   @if(session()->get('success'))
     <div class="alert alert-success">
@@ -18,20 +14,19 @@
 <table class="table table-striped">
      <tbody>
      <tr>
-            <td><label for="title" >Idea Name</label></td>
+            <td><label>Idea Name</label></td>
             <td>{{ $idea->title }}</td>
         </tr>
         <tr>
-            <td><label for="destination" >Destination</label></td>
+            <td><label >Destination</label></td>
             <td> {{ $idea->destination }}</td>
         </tr>
-        </tr>
-            <td><label for="traveldate" >Travel Date</label></td>
+        <tr>
+            <td><label>Travel Date</label></td>
             <td> {{ $idea->start_date}} to {{ $idea->end_date}}</td>
         </tr>
-        </tr>
         <tr>
-            <td><label for="tags" >tags</label></td>
+            <td><label >tags</label></td>
             <td> @php
                     $first=true
                  @endphp
@@ -45,7 +40,7 @@
                      @endif
 
                 @endforeach</td>
-            <td><label for="user" >Author</label></td>
+            <td><label >Author</label></td>
             <td> {{ $idea->user->name}}  </td>
         </tr>
     </tbody>
