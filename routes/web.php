@@ -21,7 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::resource('ideas', 'IdeaController')->middleware('auth');
 
-Route::get('/search','SearchController@search')->name('search')->middleware('auth');
+/*Route::get('/search','SearchController@search')->name('search')->middleware('auth');*/
+Route::get('/search','IdeaController@search')->name('search')->middleware('auth');
 
 Route::post('/delete','IdeaController@destroy')->name('delete')->middleware('auth');
 

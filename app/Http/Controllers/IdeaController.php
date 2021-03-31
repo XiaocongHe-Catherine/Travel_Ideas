@@ -20,6 +20,44 @@ class IdeaController extends Controller
         $count = count($ideas);
 		return view("ideas.view_all_ideas",compact('ideas','count'));
     }
+      /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function search(Request $request)
+    {  
+        
+         $des_or_tags=$request->get('des_or_tags');
+         $search=$request->get('search');
+         $partial_match=$request->get('partial_match')==true;
+         if($des_or_tags=="destination"){
+        // dd($des_or_tags,$search,$partial_match);
+            if($partial_match==true){
+              $ideas=Idea::where('destination','LIKE','%'.$request->search."%")->get();
+             }else{
+              $ideas=Idea::where('destination','=',$request->search)->get();
+            } 
+          }else{
+           if($partial_match==true){
+              $tags=Tag::where('tag_name','LIKE','%'.$request->search."%")->get();
+             }else{
+              $tags=Tag::where('tag_name','LIKE','%'.$request->search."%")->get();
+            } 
+            $ideas=array();
+            foreach($tags as $tag){
+              $idea=Idea::find($tag->idea_id);
+              array_push($ideas,$idea);
+            }
+          }
+        if($search==null){
+          $ideas = Idea::all();
+        }
+        $count = count($ideas);
+	    return view("ideas.view_all_ideas",compact('ideas','count'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -139,6 +177,8 @@ class IdeaController extends Controller
     { 
         $idea = Idea::find($id);
         $idea->delete();
+        $idea->tags()->delete();
        return redirect()->route('ideas.index')->with('success', 'Idea has been deleted Successfully');
     }
+
 }

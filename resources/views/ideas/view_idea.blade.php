@@ -40,7 +40,7 @@
                      @endif
 
                 @endforeach</td>
-            <td><label >Author</label></td>
+            <td><label>Author</label></td>
             <td> {{ $idea->user->name}}  </td>
         </tr>
     </tbody>

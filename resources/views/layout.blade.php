@@ -23,6 +23,7 @@
             </nav>  
            
             <div class="form-group">
+
             <form method="get" action="{{ route('search') }}">
             @csrf
               <select name="des_or_tags">
