@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Idea;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class IdeaController extends Controller
 {
@@ -104,6 +106,36 @@ class IdeaController extends Controller
         }
         return redirect()->route('ideas.show',$idea->id)->with('success', 'Idea has been created Successfully');
     }
+
+    public function foursquare()
+    {
+
+      $client = new Client();
+      $response = $client->request('GET', 'https://api.foursquare.com/v2/venues/explore', [
+        'form_params' => [
+        'client_id' => 'A3X4KJKUDLPHNSCOWGZF23CKR3FM2IKEMPYTC5B2J4X22W4F',
+        'client_secret' => 'U2NY5VFW1U0UEZXCZGACJMADWUYMZ5WHE3XXQUTJQTNKELMY',
+        'limit' => 10,
+        'v' => 20210404,
+        'near' => 'Paris',
+      ]
+      ]);
+      $response = json_decode($response->body());
+      {
+        Log::$value['items']['venue']['name'];
+        echo $value['items']['venue']['name'];
+        $output='<tr>Hello<td>';
+      }
+      return Response($output);
+    }
+
+
+
+    public function foursquare2()
+    {
+      return '<td>hello</td>';
+    }
+
 
     /**
      * Display the specified resource.
