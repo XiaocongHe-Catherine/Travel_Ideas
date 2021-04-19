@@ -108,6 +108,10 @@ class IdeaController extends Controller
     }
 
 
+
+
+
+
     /**
      * Display the specified resource.
      *
@@ -218,8 +222,10 @@ class IdeaController extends Controller
         $data['idea_id'] = $request->id;
         $data['user_id'] =auth()->id();
 
+
+        // Creates new comment and gets them all on ascending order
         if(Comment::create($data)){
-          $comments = Comment::where(['idea_id'=>$request->id])->orderBy('created_at','desc')->get();
+          $comments = Comment::where(['idea_id'=>$request->id])->orderBy('created_at','asc')->get();
          return view('ideas.message-lists')->withComments($comments);
         }
         $result =[
@@ -231,6 +237,7 @@ class IdeaController extends Controller
     }
 
 
+    // Gets all comments in ascending order
     public function getAll($id){
       $comments = Comment::where(['idea_id'=>$id])->orderBy('created_at','asc')->get();
       return view('ideas.message-lists')->withComments($comments);

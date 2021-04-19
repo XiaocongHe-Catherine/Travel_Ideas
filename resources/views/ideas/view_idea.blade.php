@@ -47,6 +47,7 @@
   </table>
 </article>
 
+<!-- Commenting Feature -->
 <div id="messages">
 
     <ul id="chat-message-lists-view">
@@ -68,7 +69,6 @@
 <form id="btn-chat">
 @csrf
 <input type="text" name="comment" id="message" autocomplete="" placeholder="Type your message">
-
 <input type="hidden" name="id" value={{ $idea->id}}>
 <input type="submit" id="message-send-btn" value="Send">
 </form>
@@ -100,7 +100,7 @@ $.ajax({
 
 </script>
 
-<!-- Recommended places using Foursquare API  -->
+
 <article class="foursquare">
 <h2>Recommended Places</h2>
 <div class="point-of-interest">
@@ -135,11 +135,11 @@ $.ajax({
 </div>
 </article>
 @endsection
-
-
-<!-- Get all comment messages and refresh with AJAX for latest -->
 @section('scripts')
+
+
 <script>
+    // Refreshes every 5 seconds with AJAX to check for new comments for the given idea_id
 $(document).ready(function() {
 
     
@@ -148,6 +148,7 @@ $(document).ready(function() {
 }, 5000);
 
 
+// Gets full list of historical messages on first load of the page
 window.onload = function(){
        var objDev = document.getElementById('chat-message-lists-view');
        objDev.scrollTop = objDev.scrollHeight;
@@ -173,6 +174,7 @@ window.onload = function(){
    }
   
     
+//    Sends new chat message on click of the button
 
     $('#message-send-btn').on('click',function(event){
         event.preventDefault();

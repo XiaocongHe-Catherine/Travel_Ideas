@@ -27,11 +27,11 @@ Route::get('/search','IdeaController@search')->name('search')->middleware('auth'
 
 Route::post('/delete','IdeaController@destroy')->name('delete')->middleware('auth');
 
-
-// Route for the user to post a new message
+Route::post('/chat2','IdeaController@chat2')->name('chat2')->middleware('auth');
 Route::post('message/store','IdeaController@messageStore')->name('message.store')->middleware('auth');
 
 
-// Route to get all messages that have been posted for a given idea id
+
+
 Route::get('message/get-all/{id}','IdeaController@getAll')->middleware('auth');
 
