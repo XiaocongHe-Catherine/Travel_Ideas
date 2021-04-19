@@ -75,6 +75,32 @@ body {
   background-color: #f8fafc;
 }
 
+#messages {
+  height : 300px;
+  padding: 10px;
+  background-color: white
+  }
+  
+  #messages ul {
+      height:280px;
+      overflow: hidden;
+      overflow-y: scroll;
+      list-style-type: none;
+  }
+  
+  input {
+      font-size: 1.2rem;
+      padding: 10px;
+      margin: 10px 5px;
+      appearance: none;
+      border: 1px solid #ccc;
+      border-radius: 5px
+  }
+  
+  #message{
+      flex: 2
+  }
+
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;
 }

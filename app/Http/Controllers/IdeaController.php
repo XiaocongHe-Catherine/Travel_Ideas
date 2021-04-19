@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Idea;
+use App\Comment;
 use App\Tag;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class IdeaController extends Controller
 {
@@ -105,6 +107,7 @@ class IdeaController extends Controller
         return redirect()->route('ideas.show',$idea->id)->with('success', 'Idea has been created Successfully');
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -113,9 +116,21 @@ class IdeaController extends Controller
      */
     public function show($id)
     {
-             //fecth a book by id
-		$idea = Idea::find($id);
-		return view("ideas.view_idea",compact('idea'));
+             //fecth a book by id 
+      $destination  = Idea::where('id',$id)->first();
+      $comments = Comment::where(['idea_id'=>$destination->id])->orderBy('created_at','asc')->get();
+    
+      $destination_name = $destination->destination;
+
+      $response = file_get_contents('https://api.foursquare.com/v2/venues/explore?client_id=A3X4KJKUDLPHNSCOWGZF23CKR3FM2IKEMPYTC5B2J4X22W4F&client_secret=U2NY5VFW1U0UEZXCZGACJMADWUYMZ5WHE3XXQUTJQTNKELMY&limit=5&near='.$destination_name.'&v=20210404');
+    
+      $location_response = json_decode($response);
+      
+
+      $groups            = $location_response->response->groups;
+      
+		  $idea = Idea::find($id);
+		  return view("ideas.view_idea",compact('idea','groups'))->withComments($comments );
     }
 
     /**
@@ -167,6 +182,10 @@ class IdeaController extends Controller
         return redirect()->route('ideas.show',$idea->id)->with('success', 'Idea has been updated Successfully');
         }
 
+
+       
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -179,6 +198,42 @@ class IdeaController extends Controller
         $idea->delete();
         $idea->tags()->delete();
        return redirect()->route('ideas.index')->with('success', 'Idea has been deleted Successfully');
+    }
+
+    public function messageStore(Request $request){
+     
+        $validation = Validator::make($request->all(),[
+          'comment'=>'required'
+
+        ]);
+        if( $validation->fails()){
+          $result =[
+            'errors'=>true,
+            'message'=>'Please enter the message'
+          ];
+          return response()->json($result,422);
+        }
+
+        $data = $request->except('_token');
+        $data['idea_id'] = $request->id;
+        $data['user_id'] =auth()->id();
+
+        if(Comment::create($data)){
+          $comments = Comment::where(['idea_id'=>$request->id])->orderBy('created_at','desc')->get();
+         return view('ideas.message-lists')->withComments($comments);
+        }
+        $result =[
+          'success'=>true,
+          'message'=>'Ops Something went wrong'
+        ];
+        return response()->json($result,404);
+
+    }
+
+
+    public function getAll($id){
+      $comments = Comment::where(['idea_id'=>$id])->orderBy('created_at','asc')->get();
+      return view('ideas.message-lists')->withComments($comments);
     }
 
 }

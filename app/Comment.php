@@ -6,11 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+
+
+    protected $table='comments_ideas';
+
     protected $fillable = [
 
-            'comment_id',
-            'user_id',
-            'travel_id',
-            'comment',
-    ];
+        'id',
+        'user_id',
+        'idea_id',
+        'comment',
+];
+    public function user(){
+        return $this->belongsTo('App\User','user_id');
+    }
+    public function idea(){
+        return $this->belongsTo('App\Idea','idea_id');
+    }
+
+
+   
 }
